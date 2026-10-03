@@ -144,8 +144,8 @@ export default function MenuAndCart() {
   const filtered = useMemo(
     () =>
       category === 'All'
-        ? PRODUCTS
-        : PRODUCTS.filter(
+        ? products
+        : products.filter(
             (product) => product.category === category,
           ),
     [category],
@@ -154,7 +154,7 @@ export default function MenuAndCart() {
   const entries = Object.entries(cart)
     .filter(([, quantity]) => quantity > 0)
     .map(([id, quantity]) => ({
-      product: PRODUCTS.find((product) => product.id === id)!,
+      product: products.find((product) => product.id === id)!,
       quantity,
     }));
 
