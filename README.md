@@ -1,6 +1,6 @@
 # Enny's Kitchen
 
-Mobile-first Nigerian food storefront inspired by the KAF Eatables ordering experience.
+Mobile-first Nigerian food storefront 
 
 ## Included
 - Hero / brand introduction
