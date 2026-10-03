@@ -1,30 +1,79 @@
 # Enny's Kitchen
 
-Mobile-first Nigerian food storefront 
+A mobile-first Nigerian food storefront for Enny's Kitchen, Surulere, Lagos.
 
-## Included
-- Hero / brand introduction
-- Menu with category filters
-- Product cards and quantity controls
-- Cart drawer with automatic totals when prices are supplied
-- WhatsApp-first order handoff
-- Instagram link: https://www.instagram.com/ennyskitchen2/
-- Responsive mobile layout
-- Local SVG placeholders ready to replace with Enny's real food photos
+## Features
 
-## Setup
+- Responsive Nigerian food storefront
+- Real Enny's Kitchen food photography
+- Kitchen video section
+- Menu category filtering
+- Shopping bag / cart
+- Quantity controls
+- Delivery or pickup selection
+- Customer name collection
+- Delivery address collection
+- Optional order notes
+- WhatsApp-first ordering
+- Automatic WhatsApp order message generation
+- Automatic totals when menu prices are configured
+- SEO metadata
+- Open Graph / social sharing metadata
+- Schema.org structured data
+- Instagram integration
+- Responsive mobile navigation
+- Next.js optimized local images
+- Reduced-motion accessibility support
 
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
-```
+## Menu
 
-Set `NEXT_PUBLIC_WHATSAPP_NUMBER` to the business WhatsApp number in international digits-only format.
+Current menu categories include:
 
-## Add real menu photos
-Replace the files in `public/images/` while keeping the same filenames, or update the `image` paths in `app/page.tsx`.
+- Rice & Beans
+  - Cooked Rice
+  - Beans
+- Sides
+  - Fried Plantain
+- Soups
+  - Egusi Soup
+  - Efo Riro
+- Swallow
+  - Eba
+  - Amala
+- Protein
+  - Chicken Portion
 
-## Add prices
-Update each product's `price` value in `app/page.tsx`. Prices are intentionally left as `null` because no current Enny's Kitchen price list was supplied or reliably retrieved.
-# Enny-s-Kitchen
+Prices are intentionally configurable because the current price list is not stored in the repository.
+
+## WhatsApp Ordering
+
+Customers build their order and provide:
+
+- Name
+- Delivery or pickup
+- Delivery address when applicable
+- Optional order note
+
+The website generates a WhatsApp message containing the complete order.
+
+## Business Information
+
+Website:
+
+https://www.ennyskitchen.com
+
+Instagram:
+
+https://www.instagram.com/ennyskitchen2/
+
+Location:
+
+33 Nnobi Street, Opposite Ikate Baptist Church, Kilo Bus-Stop,
+Surulere, Lagos, Nigeria
+
+## Environment Variables
+
+Create `.env.local`:
+
+```env
+NEXT_PUBLIC_WHATSAPP_NUMBER=2348028171608
