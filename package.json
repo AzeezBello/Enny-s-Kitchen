@@ -1,1 +1,25 @@
-{"name":"ennys-kitchen","version":"1.0.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint"},"dependencies":{"@types/node":"^22.10.0","@types/react":"^19.0.0","@types/react-dom":"^19.0.0","lucide-react":"^0.468.0","next":"^16.3.8","react":"^19.0.0","react-dom":"^19.0.0","typescript":"^5.7.2"}}
+{
+  "name": "ennys-kitchen",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f web"
+  },
+  "dependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "lucide-react": "^0.468.0",
+    "next": "^16.3.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.2"
+  }
+}

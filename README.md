@@ -1,79 +1,93 @@
 # Enny's Kitchen
 
-A mobile-first Nigerian food storefront for Enny's Kitchen, Surulere, Lagos.
+A mobile-first, multi-page storefront for Enny's Kitchen, a home-style Nigerian kitchen in Surulere, Lagos. Customers browse the menu, build an order bag and send it as a ready-made WhatsApp message.
 
-## Features
+Built with Next.js 16 (App Router), React 19 and TypeScript. Ships as a small Docker image.
 
-- Responsive Nigerian food storefront
-- Real Enny's Kitchen food photography
-- Kitchen video section
-- Menu category filtering
-- Shopping bag / cart
-- Quantity controls
-- Delivery or pickup selection
-- Customer name collection
-- Delivery address collection
-- Optional order notes
-- WhatsApp-first ordering
-- Automatic WhatsApp order message generation
-- Automatic totals when menu prices are configured
-- SEO metadata
-- Open Graph / social sharing metadata
-- Schema.org structured data
-- Instagram integration
-- Responsive mobile navigation
-- Next.js optimized local images
-- Reduced-motion accessibility support
+## Pages
 
-## Menu
+| Route           | What it does                                                                 |
+| --------------- | ---------------------------------------------------------------------------- |
+| `/`             | Hero, favourites you can add to the bag, categories, kitchen teaser, how to order |
+| `/menu`         | Full menu with category filters, search and `?category=` deep links           |
+| `/about`        | The story, values, photo gallery and kitchen videos                           |
+| `/how-to-order` | Four steps, delivery vs pickup, FAQs                                          |
+| `/contact`      | WhatsApp, phone, map link, Instagram and one-tap message templates            |
 
-Current menu categories include:
+The order bag lives in the root layout, so it follows the customer across pages and is saved in the browser between visits.
 
-- Rice & Beans
-  - Cooked Rice
-  - Beans
-- Sides
-  - Fried Plantain
-- Soups
-  - Egusi Soup
-  - Efo Riro
-- Swallow
-  - Eba
-  - Amala
-- Protein
-  - Chicken Portion
+## Run locally
 
-Prices are intentionally configurable because the current price list is not stored in the repository.
+```bash
+npm install
+npm run dev
+```
 
-## WhatsApp Ordering
+Open http://localhost:3000.
 
-Customers build their order and provide:
+Other scripts:
 
-- Name
-- Delivery or pickup
-- Delivery address when applicable
-- Optional order note
+```bash
+npm run build       # production build (standalone output)
+npm run start       # serve the production build
+npm run typecheck   # generate route types, then tsc --noEmit
+```
 
-The website generates a WhatsApp message containing the complete order.
+## Run with Docker
 
-## Business Information
+The Dockerfile is a three-stage build that uses Next.js `output: 'standalone'`, so the final image contains only the compiled server, its traced dependencies and static assets. It runs as a non-root user and has a health check.
 
-Website:
+```bash
+# build and start in the background
+docker compose up -d --build
 
-https://www.ennyskitchen.com
+# follow logs
+docker compose logs -f web
 
-Instagram:
+# stop
+docker compose down
+```
 
-https://www.instagram.com/ennyskitchen2/
+The site is served on http://localhost:3000. If that port is busy, set `HOST_PORT`:
 
-Location:
+```bash
+HOST_PORT=8080 docker compose up -d --build
+```
 
-33 Nnobi Street, Opposite Ikate Baptist Church, Kilo Bus-Stop,
-Surulere, Lagos, Nigeria
+Without Compose:
 
-## Environment Variables
+```bash
+docker build -t ennys-kitchen .
+docker run --rm -p 3000:3000 ennys-kitchen
+```
 
-Create `.env.local`:
+## Configuration
 
-```env
-NEXT_PUBLIC_WHATSAPP_NUMBER=2348028171608
+Copy `.env.example` to `.env` (Compose reads it automatically) or `.env.local` (for `npm run dev`).
+
+| Variable                      | Purpose                                                                                       |
+| ----------------------------- | --------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Optional override for the WhatsApp number, digits only. Inlined at build time, so it is passed to Docker as a build argument. |
+| `HOST_PORT`                   | Host port published by Compose. Defaults to `3000`.                                           |
+
+Business details (name, address, phone, Instagram) live in `lib/site.ts`. Menu items, categories and prices live in `lib/menu.ts`. A `price` of `null` shows "Price on request".
+
+## Project structure
+
+```
+app/                 routes, layout, metadata, sitemap, robots, icons
+components/          header, footer, dish card, menu explorer, page hero, CTA band
+components/cart/     cart provider (localStorage), drawer, floating button, toast
+lib/site.ts          business facts and schema.org helpers
+lib/menu.ts          menu data
+public/images        food photography and logo
+public/videos        kitchen videos
+Dockerfile           multi-stage production image
+compose.yaml         one-service Compose file
+```
+
+## Business information
+
+- Website: https://www.ennyskitchen.com
+- Instagram: https://www.instagram.com/ennyskitchen2/
+- Location: 33 Nnobi Street, Opposite Ikate Baptist Church, Kilo Bus-Stop, Surulere, Lagos, Nigeria

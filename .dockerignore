@@ -1,0 +1,27 @@
+node_modules
+.next
+out
+.git
+.gitignore
+.DS_Store
+*.log
+npm-debug.log*
+
+# Never bake local secrets into the image; pass values as build args / env instead.
+.env
+.env.*
+!.env.example
+
+# Editor and agent notes
+.claude
+.vscode
+.idea
+README.md
+AGENTS.md
+CLAUDE.md
+llms.txt
+
+# Docker files themselves
+Dockerfile
+.dockerignore
+compose.yaml

@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Digits-only WhatsApp number. Leave unset to use the published business line.
+        NEXT_PUBLIC_WHATSAPP_NUMBER: ${NEXT_PUBLIC_WHATSAPP_NUMBER:-}
+    image: ennys-kitchen:latest
+    container_name: ennys-kitchen
+    restart: unless-stopped
+    ports:
+      # Change HOST_PORT if 3000 is already taken on your machine.
+      - "${HOST_PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

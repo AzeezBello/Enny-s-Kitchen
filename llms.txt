@@ -1,22 +1,25 @@
 # Enny's Kitchen
 
-> Home-cooked Nigerian food, freshly prepared in Surulere, Lagos.
+> Home-cooked Nigerian food, freshly prepared in Surulere, Lagos. Orders are placed on WhatsApp.
 
-## Website
+## Pages
 
-- Home and menu: https://www.ennyskitchen.com/
-- Menu and ordering: https://www.ennyskitchen.com/#menu
-- About the kitchen: https://www.ennyskitchen.com/#about
-- How to order: https://www.ennyskitchen.com/#how
+- Home: https://www.ennyskitchen.com/
+- Menu and ordering: https://www.ennyskitchen.com/menu
+- About the kitchen: https://www.ennyskitchen.com/about
+- How to order, delivery, pickup and FAQs: https://www.ennyskitchen.com/how-to-order
+- Contact: https://www.ennyskitchen.com/contact
 
 ## Food
 
-The menu includes rice and beans, fried plantain, Egusi soup, Efo Riro, Eba,
-Amala and chicken portions. Prices and availability are confirmed when ordering.
+The menu includes white rice, jollof rice, fried rice, beans, fried plantain, Egusi soup,
+Efo Riro, Eba, Amala and chicken portions. Everything is made to order. Listed prices are a
+guide; availability and the final total are confirmed on WhatsApp.
 
 ## Contact and social
 
+- WhatsApp orders: https://wa.me/2348061542075
+- Phone: +234 806 154 2075
 - Instagram: https://www.instagram.com/ennyskitchen2/
-- Orders: https://wa.me/2348028171608
 - Location: 33 Nnobi Street, Opposite Ikate Baptist Church, Kilo Bus-Stop,
   Surulere, Lagos, Nigeria.

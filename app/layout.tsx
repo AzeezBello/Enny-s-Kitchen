@@ -1,18 +1,45 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { DM_Sans, Playfair_Display } from 'next/font/google';
 import './globals.css';
-import { INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from './seo';
+import { CartProvider } from '@/components/cart/cart-provider';
+import { CartDrawer } from '@/components/cart/cart-drawer';
+import { CartToast } from '@/components/cart/cart-toast';
+import { FloatingOrder } from '@/components/cart/floating-order';
+import { SiteFooter } from '@/components/site-footer';
+import { SiteHeader } from '@/components/site-header';
+import {
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+  SOCIAL_IMAGE,
+  SOCIAL_IMAGE_ALT,
+} from '@/lib/site';
+
+const sans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const serif = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
+const DEFAULT_TITLE = `${SITE_NAME} | ${SITE_TAGLINE}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Enny's Kitchen | Nigerian food, made with love",
+    default: DEFAULT_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
-  alternates: {
-    canonical: '/',
-  },
   robots: {
     index: true,
     follow: true,
@@ -27,38 +54,46 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NG',
-    url: `${SITE_URL}/`,
     siteName: SITE_NAME,
-    title: "Enny's Kitchen | Nigerian food, made with love",
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: '/images/social-share.jpg',
-        alt: "Enny's Kitchen social share image featuring freshly prepared Egusi soup",
-      },
-    ],
+    images: [{ url: SOCIAL_IMAGE, width: 1200, height: 630, alt: SOCIAL_IMAGE_ALT }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Enny's Kitchen | Nigerian food, made with love",
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: '/images/social-share.jpg',
-        alt: "Enny's Kitchen social share image featuring freshly prepared Egusi soup",
-      },
-    ],
+    images: [{ url: SOCIAL_IMAGE, alt: SOCIAL_IMAGE_ALT }],
   },
   other: {
-    'instagram:site': '@ennyskitchen2',
+    'instagram:site': INSTAGRAM_HANDLE,
     'og:see_also': INSTAGRAM_URL,
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: '#e62e57',
+  colorScheme: 'light',
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+      <body>
+        <CartProvider>
+          <a className="skipLink" href="#main">
+            Skip to content
+          </a>
+          <SiteHeader />
+          <main id="main" tabIndex={-1}>
+            {children}
+          </main>
+          <SiteFooter />
+          <FloatingOrder />
+          <CartToast />
+          <CartDrawer />
+        </CartProvider>
+      </body>
     </html>
   );
 }
